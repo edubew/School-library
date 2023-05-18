@@ -11,7 +11,7 @@ class TrimmerDecorator < Decorator
   end
 end
 
-person = Person.new(22, name: 'maximilianus', parent_permission: true)
+person = Person.new(22, name = 'maximilianus', parent_permission: true)
 puts person.correct_name
 
 capitalized_person = CapitalizeDecorator.new(person)
