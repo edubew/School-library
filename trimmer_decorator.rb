@@ -1,6 +1,5 @@
-require_relative './person'
 require_relative './base_decorator'
-require_relative './capitalize_decorator'
+require_relative './person'
 
 class TrimmerDecorator < Decorator
   MAX_LENGTH = 10
@@ -11,7 +10,7 @@ class TrimmerDecorator < Decorator
   end
 end
 
-person = Person.new(22, name = 'maximilianus', parent_permission: true)
+person = Person.new(22, name: 'maximilianus', parent_permission: true)
 puts person.correct_name
 
 capitalized_person = CapitalizeDecorator.new(person)

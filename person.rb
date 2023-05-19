@@ -13,7 +13,7 @@ class Person < Nameable
   attr_accessor :name, :age
 
   def correct_name
-    @name
+    @name.to_s
   end
 
   # Public method to return true if the person is of age or has permission from parents
