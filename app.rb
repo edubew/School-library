@@ -46,7 +46,7 @@ class App
         end
     end
 
-    # Create a student based on user input
+    # Create a student based on user inputs
     def create_student
         print 'Name: '
         name = gets.chomp
@@ -59,4 +59,20 @@ class App
 
         student = Student.new(age, name, parent_permission: parent_permission == 'y')
         @people << student
+        puts 'Student created successfully.'
+    end
+
+    # Create a student based on user input
+    def create_teacher
+        print 'Name: '
+        name = gets.chomp
+
+        print 'Age: '
+        age = gets.chomp.to_i
+
+        print 'Specialization: '
+        specialization = gets.chomp
+
+        @people << Teacher.new(age, specialization, name)
+        puts 'Teacher created successfully'
     end
