@@ -30,3 +30,18 @@ class App
             end
         end
     end
+
+    # Create a person (either a student or a teacher) based on a user input
+    def create_person
+        puts 'Do you want to create a student (1) or a teacher (2)?'
+        option = gets.chomp
+
+        case option
+        when '1'
+            create_student
+        when '2'
+            create_teacher
+        else
+            puts 'Invalid input! Please type 1 or 2.'
+        end
+    end
