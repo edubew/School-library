@@ -45,3 +45,18 @@ class App
             puts 'Invalid input! Please type 1 or 2.'
         end
     end
+
+    # Create a student based on user input
+    def create_student
+        print 'Name: '
+        name = gets.chomp
+
+        print 'Age: '
+        age = gets.chomp.to_i
+
+        print 'Has parent permission? [Y/N]: '
+        parent_permission = gets.chomp.downcase
+
+        student = Student.new(age, name, parent_permission: parent_permission == 'y')
+        @people << student
+    end
