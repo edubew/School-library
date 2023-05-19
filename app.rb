@@ -76,3 +76,38 @@ class App
         @people << Teacher.new(age, specialization, name)
         puts 'Teacher created successfully'
     end
+
+    # Create a book based on user inputs
+    def create_book
+        print 'Title: '
+        title = gets.chomp
+
+        print 'Author: '
+        author = gets.chomp
+
+        @books << Book.new(title, author)
+        puts 'Book created successfully'
+    end
+
+    # Create a rental based on user input
+    def create_rental
+        puts 'Select a book from the list by number: '
+        @books.each_with_index do |book, index|
+            puts "#{index}) Title: #{book.title}, Author: #{book.author}"
+        end
+
+        book_id = gets.chomp.to_i
+
+        puts 'Select a person from the list by number: '
+        @people.each_with_index do |person, index|
+            puts "#{index}) [#{person.class}] Name: #{person.name}, ID: #{person.id}, Age: #{person.age}"
+        end
+
+        person_id = gets.chomp.to_i
+
+        print 'Date: '
+        date = gets.chomp
+
+        @rental << Rental.new(date, @people[person_id], @books[book_id])
+        puts 'Rental created successfully.'
+    end
