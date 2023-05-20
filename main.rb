@@ -1,47 +1,59 @@
 #!/usr/bin/env ruby
 
-require_relative 'app'
+require './app'
 
-def main
-    app = App.new
+class Main
+  def initialize
+    @app = App.new
+  end
 
-    loop do
-        puts '--- School Library App ---'
-        puts 'Select an option:'
-        puts '1) List all books'
-        puts '2) List all people'
-        puts '3) Create a person'
-        puts '4) Create a book'
-        puts '5) Create a rental'
-        puts '6) List all rentals for a person'
-        puts '7) Quit'
+  # Prints the menu options
+  def print_menu
+    puts 'Please choose an option by entering a number:'
+    puts '1) List all books'
+    puts '2) List all people'
+    puts '3) Create a person'
+    puts '4) Create a book'
+    puts '5) Create a rental'
+    puts '6) List all rentals for a given person id'
+    puts '7) Exit'
+  end
 
-        option = gets.chomp.to_i
-
-        case option
-        when 1
-            app.list_all_books
-        when 2
-            app.list_all_people
-        when 3
-            app.create_person
-        when 4
-            app.create_book
-        when 5
-            app.create_rental
-        when 6
-            app.list_rentals
-        when 7
-            puts 'Exiting the app...'
-            break
-        else
-            puts 'Invalid option! Please enter a valid position'
-        end
-
-        puts 'Press enter to continue...'
-        gets.chomp
-        system('clear')
+  # Executes the selected menu action
+  def menu_action(option)
+    case option
+    when '1'
+      @app.list_all_books
+    when '2'
+      @app.list_all_people
+    when '3'
+      @app.create_person
+    when '4'
+      @app.create_book
+    when '5'
+      @app.create_rental
+    when '6'
+      @app.list_rentals
+    else
+      puts 'Please enter a number between 1 and 7'
     end
+  end
+
+  # Displays the main menu and handles user input
+  def menu
+    puts '---School Library Application---'
+    loop do
+      print_menu
+      option = gets.chomp
+      if option == '7'
+        puts 'Thank you for using our library'
+        return
+      end
+      menu_action(option)
+    end
+  end
 end
 
-main
+# Create an instance of the Main class and run the menu
+main = Main.new
+main.menu
