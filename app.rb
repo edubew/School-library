@@ -1,6 +1,7 @@
-require_relative 'person'
 require_relative 'book'
 require_relative 'rental'
+require_relative 'student'
+require_relative 'teacher'
 
 class App
     def initialize
@@ -11,7 +12,7 @@ class App
 
     # List of all the books
     def list_all_books
-        if @book.empty?
+        if @books.empty?
             puts 'No books available. Please add books.'
         else
             @books.each do |book|
@@ -57,7 +58,7 @@ class App
         print 'Has parent permission? [Y/N]: '
         parent_permission = gets.chomp.downcase
 
-        student = Student.new(age, name, parent_permission: parent_permission == 'y')
+        student = Student.new(name, age, parent_permission: parent_permission == 'y')
         @people << student
         puts 'Student created successfully.'
     end
@@ -73,7 +74,7 @@ class App
         print 'Specialization: '
         specialization = gets.chomp
 
-        @people << Teacher.new(age, specialization, name)
+        @people << Teacher.new(name, age, specialization)
         puts 'Teacher created successfully'
     end
 
@@ -108,7 +109,7 @@ class App
         print 'Date: '
         date = gets.chomp
 
-        @rental << Rental.new(date, @people[person_id], @books[book_id])
+        @rentals << Rental.new(date, @books[book_id], @people[person_id])
         puts 'Rental created successfully.'
     end
 
@@ -117,7 +118,7 @@ class App
         print 'Person ID: '
         id = gets.chomp.to_i
 
-        rentals = @rentals.filter { |rental| rental.person.id == id }
+        rentals = @rentals.select { |rental| rental.person.id == id }
 
         if rentals.empty?
             puts 'No rentals found for the specified person ID.'

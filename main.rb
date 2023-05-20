@@ -1,3 +1,5 @@
+#!/usr/bin/env ruby
+
 require_relative 'app'
 
 def main
@@ -41,3 +43,5 @@ def main
         system('clear')
     end
 end
+
+main
